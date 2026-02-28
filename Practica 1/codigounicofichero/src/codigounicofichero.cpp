@@ -1,0 +1,64 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/main.cc to edit this template
+ */
+
+/* 
+ * File:   main.cpp
+ * Author: Aaron López Molino
+ *
+ * Created on 4 de febrero de 2022, 12:42
+ */
+
+#include <cstdlib>
+#include <iostream>
+#include <string>
+
+#include "TipoPalo.hpp"
+#include "Carta.hpp"
+#include "Mano.hpp"
+
+using namespace std;
+
+int main(int argc, char** argv) {
+ //pruebas de la clase carta
+    tipopalo palo = bastos;
+    Carta una(palo,3);
+    cout << una.to_string() << endl;
+    palo = oros;
+    una.modificaCarta(palo,1);
+    cout << una.to_string() << endl;
+    cout << una.numero() << " de " << una.paloCartastring() << endl;
+    cout << endl << endl;
+    
+     //pruebas de la clase Mano
+    Mano jugador1;
+    Mano jugador2;
+    
+    Carta orossota(oros,8);
+    Carta bastos3(bastos,3);
+    Carta espadas4(espadas,4);
+    Carta oros2(oros,2);
+    
+    jugador1.anaideCarta(orossota);
+    jugador1.anaideCarta(espadas4);
+    jugador1.anaideCarta(oros2);
+    
+    jugador2.anaideCarta(bastos3);
+    jugador2.anaideCarta(oros2);
+    jugador2.anaideCarta(espadas4);
+
+    cout << "Baraja jugador 1: " << endl << jugador1.to_string() << endl;
+    cout << "Baraja jugador 2: " << endl << jugador2.to_string() << endl;
+    cout << "Cartas en común: " << cartasComunes(jugador1,jugador2) << endl << endl << endl;
+    
+    jugador2.descartaCarta(0);
+    cout << "Baraja jugador 2: " << endl << jugador2.to_string() << endl;
+    
+    jugador1.cambiaCarta(bastos3,1);
+    cout << "Baraja jugador 1: " << endl << jugador1.to_string() << endl;
+    cout << "Cartas en común: " << cartasComunes(jugador1,jugador2) << endl;
+    return 0;
+   
+}
+
