@@ -1,0 +1,11 @@
+ver cambios:
+	git status
+agregar cambios:
+	git add .
+hacer el commit:
+	git commit -m "texto"
+subir los cambios:
+	git push origin main
+traer los cambios:
+	git pull origin main
+
