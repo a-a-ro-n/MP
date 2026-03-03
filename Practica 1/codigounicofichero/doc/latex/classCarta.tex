@@ -1,0 +1,218 @@
+\doxysection{Carta Class Reference}
+\hypertarget{classCarta}{}\label{classCarta}\index{Carta@{Carta}}
+
+
+Este archivo implementa los metodos y fuciones hayados en el archivo \doxylink{Carta_8hpp}{Carta.\+hpp}.  
+
+
+
+
+{\ttfamily \#include $<$Carta.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCarta_a769e6bdb8d3725177481b32e4dbbbd66}{Carta}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCarta_aff46f7f027886860f12505c5e17f63ca}{Carta}} (const \mbox{\hyperlink{TipoPalo_8hpp_a60952a631a8198c8f9608e30c4d089a6}{tipopalo}} \&, const int)
+\begin{DoxyCompactList}\small\item\em Constructor con dos parametros. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCarta_a2d014210cf9c7c612feeac35700aef6f}{Carta}} (const \mbox{\hyperlink{classCarta}{Carta}} \&)
+\begin{DoxyCompactList}\small\item\em Constructor con un parametro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCarta_ae3f30ed1ac1712b56330186f9e2139ec}{\texorpdfstring{$\sim$}{\string~}\+Carta}} ()
+\begin{DoxyCompactList}\small\item\em destructor por defecto \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classCarta_a9ce4b6c04df77d5257e3a36d0bdb098f}{to\+\_\+string}} () const
+\begin{DoxyCompactList}\small\item\em Metodo para imprimir por pantalla el palo y el total de cartar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCarta_a4c05c7615d411b5089add09c68503eb5}{modifica\+Carta}} (const \mbox{\hyperlink{TipoPalo_8hpp_a60952a631a8198c8f9608e30c4d089a6}{tipopalo}} \&, const int)
+\begin{DoxyCompactList}\small\item\em "{}\+Setter"{} modifica una carta \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCarta_a980d1b1ff4b7300ab5e1c99a5e2fd98d}{numero}} () const
+\begin{DoxyCompactList}\small\item\em "{}\+Getter"{} obtencion del numero de la carta \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classCarta_aed938f4e4a1081b0154716ed3c006d67}{palo\+Cartastring}} () const
+\begin{DoxyCompactList}\small\item\em "{}\+Getter"{} obtencon del palo de la carta \end{DoxyCompactList}\item 
+\mbox{\hyperlink{TipoPalo_8hpp_a60952a631a8198c8f9608e30c4d089a6}{tipopalo}} \mbox{\hyperlink{classCarta_ade2018a2feefffbaad2fc6c9778d12d3}{palo\+Carta}} () const
+\begin{DoxyCompactList}\small\item\em "{}\+Getter"{} del tipo de palo de la carta \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{TipoPalo_8hpp_a60952a631a8198c8f9608e30c4d089a6}{tipopalo}} \mbox{\hyperlink{classCarta_a3e70ecd22b7cc06fa003f6c28f0d1bfc}{palo}}
+\begin{DoxyCompactList}\small\item\em Palo de la carta. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCarta_a5c038f0944331b614e943b63d22ef4b7}{num}}
+\begin{DoxyCompactList}\small\item\em Numero de la carta. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Este archivo implementa los metodos y fuciones hayados en el archivo \doxylink{Carta_8hpp}{Carta.\+hpp}. 
+
+Esta clase permite instanciar objetos de tipo carta donde se refleja el umero y el palo de la misma. En esta clase se permiten conultas y modificaciones a datos privados a demas de una nnnicializaciion distinta dependiendo de las necesidades del usuario. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCarta_a769e6bdb8d3725177481b32e4dbbbd66}\label{classCarta_a769e6bdb8d3725177481b32e4dbbbd66} 
+\index{Carta@{Carta}!Carta@{Carta}}
+\index{Carta@{Carta}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{Carta()}{Carta()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Carta\+::\+Carta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. 
+
+\begin{DoxyPostcond}{Postcondition}
+Se crea una instancia de tipo carta vacia 
+\end{DoxyPostcond}
+\Hypertarget{classCarta_aff46f7f027886860f12505c5e17f63ca}\label{classCarta_aff46f7f027886860f12505c5e17f63ca} 
+\index{Carta@{Carta}!Carta@{Carta}}
+\index{Carta@{Carta}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{Carta()}{Carta()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Carta\+::\+Carta (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{TipoPalo_8hpp_a60952a631a8198c8f9608e30c4d089a6}{tipopalo}} \&}]{nuevopalo,  }\item[{const int}]{nuevonum }\end{DoxyParamCaption})}
+
+
+
+Constructor con dos parametros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuevopalo} & parametro que especifica el tipo de palo de la carta \\
+\hline
+{\em nuevonum} & parametro que especifica el numero de la carta \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Se crea una instancia de tipo carta con los valores inicializados a los valores pasados como parametro 
+\end{DoxyPostcond}
+\begin{DoxyPrecond}{Precondition}
+los parametros deben esstar correctamente inicalizados 
+\end{DoxyPrecond}
+\Hypertarget{classCarta_a2d014210cf9c7c612feeac35700aef6f}\label{classCarta_a2d014210cf9c7c612feeac35700aef6f} 
+\index{Carta@{Carta}!Carta@{Carta}}
+\index{Carta@{Carta}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{Carta()}{Carta()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Carta\+::\+Carta (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classCarta}{Carta}} \&}]{orig }\end{DoxyParamCaption})}
+
+
+
+Constructor con un parametro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orig} & \doxylink{classCarta}{Carta} de la cual se obtendran los datos para formar una copiia de la misma \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+Se crea una instancia de tipo carta con los valores inicializados a los valores de la carta pasada como parametro 
+\end{DoxyPostcond}
+\begin{DoxyPrecond}{Precondition}
+el parametro debe esstar correctamente inicalizado 
+\end{DoxyPrecond}
+\Hypertarget{classCarta_ae3f30ed1ac1712b56330186f9e2139ec}\label{classCarta_ae3f30ed1ac1712b56330186f9e2139ec} 
+\index{Carta@{Carta}!````~Carta@{\texorpdfstring{$\sim$}{\string~}Carta}}
+\index{````~Carta@{\texorpdfstring{$\sim$}{\string~}Carta}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Carta()}{\string~Carta()}}
+{\footnotesize\ttfamily Carta\+::\texorpdfstring{$\sim$}{\string~}\+Carta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+destructor por defecto 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCarta_a4c05c7615d411b5089add09c68503eb5}\label{classCarta_a4c05c7615d411b5089add09c68503eb5} 
+\index{Carta@{Carta}!modificaCarta@{modificaCarta}}
+\index{modificaCarta@{modificaCarta}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{modificaCarta()}{modificaCarta()}}
+{\footnotesize\ttfamily void Carta\+::modifica\+Carta (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{TipoPalo_8hpp_a60952a631a8198c8f9608e30c4d089a6}{tipopalo}} \&}]{nuevopalo,  }\item[{const int}]{nuevonum }\end{DoxyParamCaption})}
+
+
+
+"{}\+Setter"{} modifica una carta 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tipopalo} & especifica el palo al que se va a cambiar la carta \\
+\hline
+{\em nuevonum} & especifica el numero al que se va a cambiar la carta \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+los parametros deben esstar correctamente inicalizados 
+\end{DoxyPrecond}
+\Hypertarget{classCarta_a980d1b1ff4b7300ab5e1c99a5e2fd98d}\label{classCarta_a980d1b1ff4b7300ab5e1c99a5e2fd98d} 
+\index{Carta@{Carta}!numero@{numero}}
+\index{numero@{numero}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{numero()}{numero()}}
+{\footnotesize\ttfamily int Carta\+::numero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+"{}\+Getter"{} obtencion del numero de la carta 
+
+\begin{DoxyReturn}{Returns}
+num es el numero que se devuelve de la la carta 
+\end{DoxyReturn}
+\Hypertarget{classCarta_ade2018a2feefffbaad2fc6c9778d12d3}\label{classCarta_ade2018a2feefffbaad2fc6c9778d12d3} 
+\index{Carta@{Carta}!paloCarta@{paloCarta}}
+\index{paloCarta@{paloCarta}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{paloCarta()}{paloCarta()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{TipoPalo_8hpp_a60952a631a8198c8f9608e30c4d089a6}{tipopalo}} Carta\+::palo\+Carta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+"{}\+Getter"{} del tipo de palo de la carta 
+
+\begin{DoxyReturn}{Returns}
+palo devuelve el tipo de carta 
+\end{DoxyReturn}
+\Hypertarget{classCarta_aed938f4e4a1081b0154716ed3c006d67}\label{classCarta_aed938f4e4a1081b0154716ed3c006d67} 
+\index{Carta@{Carta}!paloCartastring@{paloCartastring}}
+\index{paloCartastring@{paloCartastring}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{paloCartastring()}{paloCartastring()}}
+{\footnotesize\ttfamily string Carta\+::palo\+Cartastring (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+"{}\+Getter"{} obtencon del palo de la carta 
+
+\begin{DoxyReturn}{Returns}
+palocarta es el palo de la carta 
+\end{DoxyReturn}
+\Hypertarget{classCarta_a9ce4b6c04df77d5257e3a36d0bdb098f}\label{classCarta_a9ce4b6c04df77d5257e3a36d0bdb098f} 
+\index{Carta@{Carta}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily string Carta\+::to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Metodo para imprimir por pantalla el palo y el total de cartar. 
+
+\begin{DoxyReturn}{Returns}
+palocarta devuelve el total de cartas que tienen un palo determinado 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCarta_a5c038f0944331b614e943b63d22ef4b7}\label{classCarta_a5c038f0944331b614e943b63d22ef4b7} 
+\index{Carta@{Carta}!num@{num}}
+\index{num@{num}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{num}{num}}
+{\footnotesize\ttfamily int Carta\+::num\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Numero de la carta. 
+
+\Hypertarget{classCarta_a3e70ecd22b7cc06fa003f6c28f0d1bfc}\label{classCarta_a3e70ecd22b7cc06fa003f6c28f0d1bfc} 
+\index{Carta@{Carta}!palo@{palo}}
+\index{palo@{palo}!Carta@{Carta}}
+\doxysubsubsection{\texorpdfstring{palo}{palo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{TipoPalo_8hpp_a60952a631a8198c8f9608e30c4d089a6}{tipopalo}} Carta\+::palo\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Palo de la carta. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/aaron/\+Escritorio/\+MP/segunda vez/\+Practica 1/codigounicofichero/include/\mbox{\hyperlink{Carta_8hpp}{Carta.\+hpp}}\item 
+/home/aaron/\+Escritorio/\+MP/segunda vez/\+Practica 1/codigounicofichero/src/\mbox{\hyperlink{carta_8cpp}{carta.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,130 @@
+\begin{theindex}
+
+  \item {/home/aaron/Escritorio/MP/segunda vez/Practica 1/codigounicofichero/include/Carta.hpp}, 
+		\hyperpage{13}
+  \item {/home/aaron/Escritorio/MP/segunda vez/Practica 1/codigounicofichero/include/Mano.hpp}, 
+		\hyperpage{13, 14}
+  \item {/home/aaron/Escritorio/MP/segunda vez/Practica 1/codigounicofichero/include/TipoPalo.hpp}, 
+		\hyperpage{15}
+  \item {/home/aaron/Escritorio/MP/segunda vez/Practica 1/codigounicofichero/src/carta.cpp}, 
+		\hyperpage{15}
+  \item {/home/aaron/Escritorio/MP/segunda vez/Practica 1/codigounicofichero/src/codigounicofichero.cpp}, 
+		\hyperpage{16}
+  \item {/home/aaron/Escritorio/MP/segunda vez/Practica 1/codigounicofichero/src/mano.cpp}, 
+		\hyperpage{16}
+  \item {\texorpdfstring{$\sim$}{\string~}Carta}
+    \subitem {Carta}, \hyperpage{7}
+  \item {\texorpdfstring{$\sim$}{\string~}Mano}
+    \subitem {Mano}, \hyperpage{10}
+
+  \indexspace
+
+  \item {anaideCarta}
+    \subitem {Mano}, \hyperpage{10}
+
+  \indexspace
+
+  \item {bastos}
+    \subitem {TipoPalo.hpp}, \hyperpage{15}
+
+  \indexspace
+
+  \item {cambiaCarta}
+    \subitem {Mano}, \hyperpage{11}
+  \item {Carta}, \hyperpage{5}
+    \subitem {\texorpdfstring{$\sim$}{\string~}Carta}, \hyperpage{7}
+    \subitem {Carta}, \hyperpage{6}
+    \subitem {modificaCarta}, \hyperpage{7}
+    \subitem {num}, \hyperpage{8}
+    \subitem {numero}, \hyperpage{7}
+    \subitem {palo}, \hyperpage{8}
+    \subitem {paloCarta}, \hyperpage{7}
+    \subitem {paloCartastring}, \hyperpage{8}
+    \subitem {to\_string}, \hyperpage{8}
+  \item {carta}
+    \subitem {Mano}, \hyperpage{11}
+  \item {cartas}
+    \subitem {Mano}, \hyperpage{12}
+  \item {cartasComunes}
+    \subitem {mano.cpp}, \hyperpage{16}
+    \subitem {Mano.hpp}, \hyperpage{14}
+  \item {codigounicofichero.cpp}
+    \subitem {main}, \hyperpage{16}
+  \item {copas}
+    \subitem {TipoPalo.hpp}, \hyperpage{15}
+
+  \indexspace
+
+  \item {descartaCarta}
+    \subitem {Mano}, \hyperpage{11}
+
+  \indexspace
+
+  \item {espadas}
+    \subitem {TipoPalo.hpp}, \hyperpage{15}
+
+  \indexspace
+
+  \item {main}
+    \subitem {codigounicofichero.cpp}, \hyperpage{16}
+  \item {Mano}, \hyperpage{9}
+    \subitem {\texorpdfstring{$\sim$}{\string~}Mano}, \hyperpage{10}
+    \subitem {anaideCarta}, \hyperpage{10}
+    \subitem {cambiaCarta}, \hyperpage{11}
+    \subitem {carta}, \hyperpage{11}
+    \subitem {cartas}, \hyperpage{12}
+    \subitem {descartaCarta}, \hyperpage{11}
+    \subitem {Mano}, \hyperpage{10}
+    \subitem {MAX}, \hyperpage{12}
+    \subitem {numCartas}, \hyperpage{12}
+    \subitem {numeroCartas}, \hyperpage{12}
+    \subitem {to\_string}, \hyperpage{12}
+  \item {mano.cpp}
+    \subitem {cartasComunes}, \hyperpage{16}
+  \item {Mano.hpp}
+    \subitem {cartasComunes}, \hyperpage{14}
+  \item {MAX}
+    \subitem {Mano}, \hyperpage{12}
+  \item {modificaCarta}
+    \subitem {Carta}, \hyperpage{7}
+
+  \indexspace
+
+  \item {num}
+    \subitem {Carta}, \hyperpage{8}
+  \item {numCartas}
+    \subitem {Mano}, \hyperpage{12}
+  \item {numero}
+    \subitem {Carta}, \hyperpage{7}
+  \item {numeroCartas}
+    \subitem {Mano}, \hyperpage{12}
+
+  \indexspace
+
+  \item {oros}
+    \subitem {TipoPalo.hpp}, \hyperpage{15}
+
+  \indexspace
+
+  \item {palo}
+    \subitem {Carta}, \hyperpage{8}
+  \item {paloCarta}
+    \subitem {Carta}, \hyperpage{7}
+  \item {paloCartastring}
+    \subitem {Carta}, \hyperpage{8}
+
+  \indexspace
+
+  \item {tipopalo}
+    \subitem {TipoPalo.hpp}, \hyperpage{15}
+  \item {TipoPalo.hpp}
+    \subitem {bastos}, \hyperpage{15}
+    \subitem {copas}, \hyperpage{15}
+    \subitem {espadas}, \hyperpage{15}
+    \subitem {oros}, \hyperpage{15}
+    \subitem {tipopalo}, \hyperpage{15}
+  \item {to\_string}
+    \subitem {Carta}, \hyperpage{8}
+    \subitem {Mano}, \hyperpage{12}
+
+\end{theindex}

@@ -1,16 +1,16 @@
 all: bin/programa
 
-bin/programa: obj/carta.o obj/mano.o obj/codigounicofichero.o
-	g++ -w obj/carta.o obj/mano.o obj/codigounicofichero.o -o bin/programa
+bin/programa: build/carta.o build/mano.o build/codigounicofichero.o
+	g++ -w build/carta.o build/mano.o build/codigounicofichero.o -o bin/programa
 
-obj/carta.o: src/carta.cpp include/Carta.hpp include/TipoPalo.hpp
-	g++ -w -Iinclude -c src/carta.cpp -o obj/carta.o
+build/carta.o: src/carta.cpp include/Carta.hpp include/TipoPalo.hpp
+	g++ -w -Iinclude -c src/carta.cpp -o build/carta.o
 
-obj/mano.o: src/mano.cpp include/Mano.hpp include/Carta.hpp include/TipoPalo.hpp
-	g++ -w -Iinclude -c src/mano.cpp -o obj/mano.o
+build/mano.o: src/mano.cpp include/Mano.hpp include/Carta.hpp include/TipoPalo.hpp
+	g++ -w -Iinclude -c src/mano.cpp -o build/mano.o
 
-obj/codigounicofichero.o: src/codigounicofichero.cpp include/Mano.hpp include/Carta.hpp include/TipoPalo.hpp
-	g++ -w -Iinclude -c src/codigounicofichero.cpp -o obj/codigounicofichero.o
+build/codigounicofichero.o: src/codigounicofichero.cpp include/Mano.hpp include/Carta.hpp include/TipoPalo.hpp
+	g++ -w -Iinclude -c src/codigounicofichero.cpp -o build/codigounicofichero.o
 
 clean:
-	rm -rf obj/*.o bin/programa
+	rm -rf build/*.o bin/programa
