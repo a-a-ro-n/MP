@@ -77,7 +77,7 @@ public:
     	 * (Las películas se separan por el caracter \n). 
     	 * Puede usarse el to_string de la clase Película dentro de este método.   
     	 */
-    	string to_string();
+    	string to_string() const;
 
     	/**
     	 * @brief Almacena las películas que hay almacenadas en el vector en un fichero csv. El fichero csv generado debe seguir
@@ -85,7 +85,7 @@ public:
     	 * que genera el método escribeFichero debe de ser capaz de ser leído por el método leerFichero. 
     	 * @param rutaFichero Ruta en donde queremos que se almacene el fichero generado. 
     	 */
-    	void escribeFichero(string rutaFichero);
+    	void escribeFichero(string rutaFichero) const;
 
     	/**
     	 * @brief Ordena las películas del vector conj de mayor a menor puntuación IMDB (utilizando la variable valoración). 
@@ -107,14 +107,24 @@ public:
     	 * @param id id de la película a obtener. 
     	 * @return Devuelve el objeto película que tenga la id indicada. Si no existiera, se devuelve una película vacía. 
     	 */
-    	Pelicula at(int id);
+    	Pelicula at(int id) const;
 
     	/**
     	 * @brief Elimina toda la información del vector. Dependiendo de si el vector es estático o dinámico la implementación varía. 
     	 */
     	void clear();
 
+	/**
+	 * @brief agranda el tamaño del array dinamicamente en ejecucion
+	 */
+	void resize();
 
+	/**
+	 * @brief busqueda de un elemento en el array dinamico
+	 * @return pos es una posicion valida del vector si se encuentra en el
+	 * array y si no devuelve -1 como modo a que no existe
+	 */
+	int buscar(const int id) const;
 private:
     	int reservado = 10;
     	Pelicula * conj;

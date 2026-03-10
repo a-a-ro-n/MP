@@ -8,6 +8,7 @@
  * 
  */
 
+#include <string>
 #include "Pelicula.h"
 
 Pelicula::Pelicula()
@@ -33,13 +34,16 @@ Pelicula::Pelicula(const Pelicula& orig)
 	id = orig.id;
 	nombre = orig.nombre;
 	anio = orig.anio;
-	valoracion = orig.valoracion
+	valoracion = orig.valoracion;
 	genero = orig.genero;
 }
 
 string Pelicula::to_string() const
 {
-	return "" + id + " " + nombre + " " + anio + " " + valoracion + " " + genero + "\n";
+	string result = "";
+	result += std::to_string(id) + " " + nombre + " " + std::to_string(anio) + " " + std::to_string(valoracion) + " " + genero + "\n";
+
+	return result;
 }
 
 int & Pelicula::setId()
@@ -83,7 +87,7 @@ string Pelicula::getNombre() const
 
 string Pelicula::getGenero() const
 {
-	return genero
+	return genero;
 }
 
 int Pelicula::getAnio() const

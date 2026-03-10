@@ -15,19 +15,19 @@
 ConjuntoPeliculas::ConjuntoPeliculas()
 {
 	conj = new Pelicula[reservado];
-	numpelicula = 0;
+	numpeliculas = 0;
 }
 
 ConjuntoPeliculas::ConjuntoPeliculas(const ConjuntoPeliculas& orig)
 {
 	conj = orig.conj;
-	numpelicula = orig.numpelicula;
+	numpeliculas = orig.numpeliculas;
 }
 
 ConjuntoPeliculas::~ConjuntoPeliculas()
 {
 	delete[] conj;
-	numpelicula = 0;
+	numpeliculas = 0;
 }
 
 void ConjuntoPeliculas::leerFichero(string rutaFichero, int numdatos)
@@ -52,7 +52,7 @@ void ConjuntoPeliculas::borrar(int id)
 	int pos = buscar(id);
 	if(pos != -1)
 	{
-		Pelicula aux = conj[numpelicula];
+		Pelicula aux = conj[numpeliculas];
 		conj[pos] = conj[numpeliculas];
 		conj[pos] = aux;
 
@@ -60,13 +60,13 @@ void ConjuntoPeliculas::borrar(int id)
 	}
 }
 
-Pelicula & ConjuntoPeliculas::at(int id) const
+Pelicula ConjuntoPeliculas::at(int id) const
 {
 	Pelicula result;
 
 	int pos = buscar(id);
 
-	if(pos != -1)
+	if(pos != -1 && pos >= 0 && pos < reservado)
 		result = conj[pos];
 
 	return result;
@@ -81,7 +81,7 @@ void ConjuntoPeliculas::ordenaporranking()
         	aux = conj[i];
         	j = i - 1;
 
-        	while (j >= 0 && conj[j].valoracion > aux.valoracion)
+        	while (j >= 0 && conj[j].getValoracion() > aux.getValoracion())
 		{
         		conj[j + 1] = conj[j];
         	    	j = j - 1;
@@ -93,8 +93,8 @@ void ConjuntoPeliculas::ordenaporranking()
 
 string ConjuntoPeliculas::to_string() const
 {
-	string result = "":
-	for(int i = 0; i < numpelicula; i++)
+	string result = "";
+	for(int i = 0; i < numpeliculas; i++)
 		result += conj[i].to_string();
 
 	return result;
@@ -107,17 +107,22 @@ void ConjuntoPeliculas::escribeFichero(string rutaFichero) const
 
 void ConjuntoPeliculas::clear()
 {
-	for(int i = 0; i < numpelicula; i++)
-		conj[i] = Pelicula();
+	/**
+		for(int i = 0; i < numpeliculas; i++)
+			conj[i] = Pelicula();
+	*/
 
-	numpelicula = 0;
+	delete[] conj;
+	conj = new Pelicula[reservado];
+
+	numpeliculas = 0;
 }
 
 void ConjuntoPeliculas::resize()
 {
 	if(numpeliculas == reservado)
 	{
-		Pelicula * aux = Pelicula[reservado];
+		Pelicula * aux = new Pelicula[reservado];
 		for(int i = 0; i < reservado; ++i)
 			aux[i] = conj[i];
 
@@ -135,7 +140,7 @@ void ConjuntoPeliculas::resize()
 int ConjuntoPeliculas::buscar(const int id) const
 {
 	int pos = -1;
-	for(int i = 0; i < numpelicula && pos == -1; i++)
+	for(int i = 0; i < numpeliculas && pos == -1; i++)
 	{
 		if(conj[i].getId() == id)
 			pos = i;

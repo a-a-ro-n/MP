@@ -49,7 +49,7 @@ public:
      *  El objetivo de este método es poder generar un string que poder mostrar por pantalla.
      * @return Devuelve un string conteniendo los siguientes datos: "id nombre género año valoración". 
      */
-    string to_string();
+    string to_string() const;
     
     /**
      * @brief Destructor del objeto película. Como no hay ahora mismo datos que usen memoria dinámica no hay que implementarlo.
@@ -90,31 +90,31 @@ public:
      * @brief Devuelve el id de la película. 
      * @return Valor entero que contiene el id de la película. 
      */
-    int getId();
+    int getId() const;
     
     /**
      * @brief Devuelve el nombre de la película.
      * @return String que contiene el nombre de la película. 
      */
-    string getNombre();
+    string getNombre() const;
     
     /**
      * @brief Devuelve el género de la película
      * @return string que contiene el género al que está asociado la película. 
      */
-    string getGenero();
+    string getGenero() const;
     
     /**
      * @brief Devuelve un entero con el año en que fue estrenada la película.
      * @return Entero que contiene el año en que se estrenó la película. 
      */
-    int getAnio();
+    int getAnio() const;
     
     /**
      * @brief Devuelve un valor flotante que contiene la valoración IMDB de la película. 
      * @return Flotante en el intervalo [0,10] que contiene la valoración. 
      */
-    float getValoracion();
+    float getValoracion() const;
 private:
     int id;
     string nombre;
