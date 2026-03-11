@@ -11,6 +11,8 @@
  */
 
 #include "ConjuntoPeliculas.h"
+#include <fstream>
+#include <string>
 
 ConjuntoPeliculas::ConjuntoPeliculas()
 {
@@ -20,8 +22,13 @@ ConjuntoPeliculas::ConjuntoPeliculas()
 
 ConjuntoPeliculas::ConjuntoPeliculas(const ConjuntoPeliculas& orig)
 {
-	conj = orig.conj;
+	reservado = orig.reservado;
+	conj = new Pelicula[reservado];
+
 	numpeliculas = orig.numpeliculas;
+
+	for(int i = 0; i < numpeliculas; i++)
+		conj[i] = orig.conj[i];
 }
 
 ConjuntoPeliculas::~ConjuntoPeliculas()
@@ -30,12 +37,59 @@ ConjuntoPeliculas::~ConjuntoPeliculas()
 	numpeliculas = 0;
 }
 
-void ConjuntoPeliculas::leerFichero(string rutaFichero, int numdatos)
-{
-	for(int i = 0; i < numdatos; i++)
-	{
-		
-	}
+void ConjuntoPeliculas::leerFichero(string rutaFichero, int numdatos) {
+    ifstream archivo(rutaFichero);
+    string dato, omitir;
+
+    if (archivo.is_open()) {
+        // 1. Saltamos la cabecera completa
+        getline(archivo, omitir);
+
+        // 2. Limpiamos y preparamos el conjunto
+        if (conj != nullptr) {
+            delete[] conj;
+        }
+        reservado = numdatos;
+        numpeliculas = 0;
+        conj = new Pelicula[reservado];
+
+        // Usamos una variable booleana para controlar el fin del archivo sin usar 'break'
+        bool fin_archivo = false;
+
+        for (int i = 0; i < numdatos && !fin_archivo; i++) {
+            
+            // Si consigue leer algo, entra al if. Si no (fin de archivo), cambia la bandera.
+            if (getline(archivo, dato, ';')) {
+                
+                // Solo procesamos si el dato no es una línea vacía o salto de línea (evita 'continue')
+                if (dato != "" && dato != "\n" && dato != "\r") {
+                    int id = stoi(dato);
+
+                    getline(archivo, dato, ';');
+                    string nombre = dato;
+
+                    getline(archivo, dato, ';');
+                    int anio = stoi(dato);
+
+                    getline(archivo, dato); 
+                    for(int j = 0; j < dato.length(); j++) {
+                        if(dato[j] == ',') dato[j] = '.';
+                    }
+                    float valoracion = stof(dato);
+
+                    aniadePelicula(id, nombre, anio, valoracion, "");
+                } else {
+                    // Si la línea estaba vacía, restamos 1 a 'i' para no gastar un hueco del bucle
+                    i--;
+                }
+            } else {
+                fin_archivo = true; 
+            }
+        }
+        archivo.close();
+    } else {
+        cout << "No se pudo abrir el archivo." << endl;
+    }
 }
 
 void ConjuntoPeliculas::aniadePelicula(int newid, string newnombre, int newanio,float newvaloracion, string newgenero)
@@ -47,17 +101,14 @@ void ConjuntoPeliculas::aniadePelicula(int newid, string newnombre, int newanio,
 	numpeliculas++;
 }
 
-void ConjuntoPeliculas::borrar(int id)
-{
-	int pos = buscar(id);
-	if(pos != -1)
-	{
-		Pelicula aux = conj[numpeliculas];
-		conj[pos] = conj[numpeliculas];
-		conj[pos] = aux;
+void ConjuntoPeliculas::borrar(int id) {
+    int pos = buscar(id);
 
-		numpeliculas--;
-	}
+    if (pos != -1)
+    {
+        conj[pos] = conj[numpeliculas - 1]; 
+        numpeliculas--;
+    }
 }
 
 Pelicula ConjuntoPeliculas::at(int id) const
@@ -102,7 +153,22 @@ string ConjuntoPeliculas::to_string() const
 
 void ConjuntoPeliculas::escribeFichero(string rutaFichero) const
 {
-
+    ofstream archivo(rutaFichero);
+    if(archivo.is_open()) {
+        archivo << ";Movie title;Released Year;ImDb Rating" << endl;
+        for(int i = 0; i < numpeliculas; i++) {
+            archivo << conj[i].getId() << ";" << conj[i].getNombre() << ";" 
+                    << conj[i].getAnio() << ";";
+            
+            // Convertimos la nota a string y cambiamos punto por coma para mantener formato original
+            string nota_str = std::to_string(conj[i].getValoracion());
+            for(int j=0; j < nota_str.length(); j++){
+                if(nota_str[j] == '.') nota_str[j] = ',';
+            }
+            archivo << nota_str << endl;
+        }
+        archivo.close();
+    }
 }
 
 void ConjuntoPeliculas::clear()
@@ -122,18 +188,31 @@ void ConjuntoPeliculas::resize()
 {
 	if(numpeliculas == reservado)
 	{
-		Pelicula * aux = new Pelicula[reservado];
-		for(int i = 0; i < reservado; ++i)
-			aux[i] = conj[i];
+		if(reservado == 0)
+		{
+			reservado = 10; // establecemos un reservado
 
-		delete[] conj;
-		conj = new Pelicula[reservado * 2];
+			if(conj) // si el conjunto no esta vacio por algun motivo extraño lo borramos
+				delete[] conj;
 
-		for(int i = 0; i < reservado; i++)
-			conj[i] = aux[i];
+			conj = new Pelicula[reservado]; // asignamos al conjunto un espacio de reservado
+		}
 
-		delete[] aux;
-		reservado *= 2;
+		else
+		{
+			Pelicula * aux = new Pelicula[reservado];
+			for(int i = 0; i < reservado; ++i)
+				aux[i] = conj[i];
+
+			delete[] conj;
+			conj = new Pelicula[reservado * 2];
+
+			for(int i = 0; i < reservado; i++)
+				conj[i] = aux[i];
+
+			delete[] aux;
+			reservado *= 2;
+		}
 	}
 }
 
