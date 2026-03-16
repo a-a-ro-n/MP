@@ -38,58 +38,56 @@ ConjuntoPeliculas::~ConjuntoPeliculas()
 }
 
 void ConjuntoPeliculas::leerFichero(string rutaFichero, int numdatos) {
-    ifstream archivo(rutaFichero);
-    string dato, omitir;
+	ifstream archivo(rutaFichero);
+    	string dato, omitir;
 
-    if (archivo.is_open()) {
-        // 1. Saltamos la cabecera completa
-        getline(archivo, omitir);
+    	if(archivo.is_open())
+	{
+        	// 1. Saltamos la cabecera completa
+        	getline(archivo, omitir);
 
-        // 2. Limpiamos y preparamos el conjunto
-        if (conj != nullptr) {
-            delete[] conj;
-        }
-        reservado = numdatos;
-        numpeliculas = 0;
-        conj = new Pelicula[reservado];
+        	// 2. Limpiamos y preparamos el conjunto
+        	if(conj != nullptr)
+        		delete[] conj;
 
-        // Usamos una variable booleana para controlar el fin del archivo sin usar 'break'
-        bool fin_archivo = false;
+        	reservado = numdatos;
+        	numpeliculas = 0;
+        	conj = new Pelicula[reservado];
 
-        for (int i = 0; i < numdatos && !fin_archivo; i++) {
-            
-            // Si consigue leer algo, entra al if. Si no (fin de archivo), cambia la bandera.
-            if (getline(archivo, dato, ';')) {
-                
-                // Solo procesamos si el dato no es una línea vacía o salto de línea (evita 'continue')
-                if (dato != "" && dato != "\n" && dato != "\r") {
-                    int id = stoi(dato);
+        	bool fin_archivo = false;
 
-                    getline(archivo, dato, ';');
-                    string nombre = dato;
+        	for(int i = 0; i < numdatos && !fin_archivo; i++)
+		{
 
-                    getline(archivo, dato, ';');
-                    int anio = stoi(dato);
+            		if(getline(archivo, dato, ';'))
+			{
 
-                    getline(archivo, dato); 
-                    for(int j = 0; j < dato.length(); j++) {
-                        if(dato[j] == ',') dato[j] = '.';
-                    }
-                    float valoracion = stof(dato);
+                		if(dato != "" && dato != "\n" && dato != "\r") {
+                    		int id = stoi(dato);
 
-                    aniadePelicula(id, nombre, anio, valoracion, "");
-                } else {
-                    // Si la línea estaba vacía, restamos 1 a 'i' para no gastar un hueco del bucle
-                    i--;
-                }
-            } else {
-                fin_archivo = true; 
-            }
-        }
-        archivo.close();
-    } else {
-        cout << "No se pudo abrir el archivo." << endl;
-    }
+                    		getline(archivo, dato, ';');
+                    		string nombre = dato;
+
+                    		getline(archivo, dato, ';');
+                    		int anio = stoi(dato);
+
+                    		getline(archivo, dato);
+                    		for(int j = 0; j < dato.length(); j++)
+                    			if(dato[j] == ',') dato[j] = '.';
+                    		float valoracion = stof(dato);
+
+                    		aniadePelicula(id, nombre, anio, valoracion, "");
+              		}
+			else // linea vacia
+				i--;
+    			}
+			else
+     				fin_archivo = true;
+		}
+		archivo.close();
+    	}
+	else
+        	cout << "No se pudo abrir el archivo." << endl;
 }
 
 void ConjuntoPeliculas::aniadePelicula(int newid, string newnombre, int newanio,float newvaloracion, string newgenero)
@@ -153,22 +151,21 @@ string ConjuntoPeliculas::to_string() const
 
 void ConjuntoPeliculas::escribeFichero(string rutaFichero) const
 {
-    ofstream archivo(rutaFichero);
-    if(archivo.is_open()) {
-        archivo << ";Movie title;Released Year;ImDb Rating" << endl;
-        for(int i = 0; i < numpeliculas; i++) {
-            archivo << conj[i].getId() << ";" << conj[i].getNombre() << ";" 
-                    << conj[i].getAnio() << ";";
-            
-            // Convertimos la nota a string y cambiamos punto por coma para mantener formato original
-            string nota_str = std::to_string(conj[i].getValoracion());
-            for(int j=0; j < nota_str.length(); j++){
-                if(nota_str[j] == '.') nota_str[j] = ',';
-            }
-            archivo << nota_str << endl;
-        }
-        archivo.close();
-    }
+    	ofstream archivo(rutaFichero);
+    	if(archivo)
+	{
+        	archivo << ";Movie title;Released Year;ImDb Rating" << endl;
+       		for(int i = 0; i < numpeliculas; i++)
+		{
+            		archivo << conj[i].getId() << ";" << conj[i].getNombre() << ";" << conj[i].getAnio() << ";";
+	            	string nota_str = std::to_string(conj[i].getValoracion());
+            		for(int j=0; j < nota_str.length(); j++)
+                		if(nota_str[j] == '.') nota_str[j] = ',';
+
+			archivo << nota_str << endl;
+        	}
+       	archivo.close();
+    	}
 }
 
 void ConjuntoPeliculas::clear()

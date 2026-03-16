@@ -17,27 +17,28 @@
 #include <string>
 using namespace std;
 
-/**
+
 int main(int argc, char** argv) {
-    /*Pelicula peli(2,"hola",2022,4.5,"accion");
+    Pelicula peli(2,"hola",2022,4.5,"accion");
     //cout << peli.to_string();        
     Pelicula pelivacia;
     //cout << pelivacia.to_string();
     ConjuntoPeliculas pelis;
     pelis.leerFichero("./data/reducedactionmovies.csv",100);
-  // pelis.leerFichero("./data/ficherocreado.csv",90);
+    // pelis.leerFichero("./data/ficherocreado.csv",90);
    cout << pelis.to_string();
    cout << endl << endl;
     pelis.ordenaporranking();
     pelis.borrar(90);
     cout << pelis.to_string();
     pelis.escribeFichero("./data/ficherocreado.csv");
+	pelis.leerFichero("./data/ficherocreado.csv",90);
     cout << endl << endl;
     cout << pelis.at(64).to_string();
     return 0;
 }
-*/
 
+/**
 #include <iostream>
 #include <string>
 #include "Pelicula.h"
@@ -102,3 +103,4 @@ int main() {
 
     return 0;
 }
+*/
