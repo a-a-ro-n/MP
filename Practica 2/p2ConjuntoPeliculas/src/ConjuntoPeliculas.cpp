@@ -63,23 +63,23 @@ void ConjuntoPeliculas::leerFichero(string rutaFichero, int numdatos) {
 			{
 
                 		if(dato != "" && dato != "\n" && dato != "\r") {
-                    		int id = stoi(dato);
+                    			int id = stoi(dato);
 
-                    		getline(archivo, dato, ';');
-                    		string nombre = dato;
+                    			getline(archivo, dato, ';');
+                    			string nombre = dato;
 
-                    		getline(archivo, dato, ';');
-                    		int anio = stoi(dato);
+                    			getline(archivo, dato, ';');
+                    			int anio = stoi(dato);
 
-                    		getline(archivo, dato);
-                    		for(int j = 0; j < dato.length(); j++)
-                    			if(dato[j] == ',') dato[j] = '.';
-                    		float valoracion = stof(dato);
+                    			getline(archivo, dato);
+                    			for(int j = 0; j < dato.length(); j++)
+                    				if(dato[j] == ',') dato[j] = '.';
+                    			float valoracion = stof(dato);
 
-                    		aniadePelicula(id, nombre, anio, valoracion, "");
-              		}
-			else // linea vacia
-				i--;
+                    			aniadePelicula(id, nombre, anio, valoracion, "");
+              			}
+				else // linea vacia
+					i--;
     			}
 			else
      				fin_archivo = true;
