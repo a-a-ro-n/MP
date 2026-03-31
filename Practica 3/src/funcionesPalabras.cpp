@@ -16,8 +16,12 @@ void leerPalabras(const string & ruta, vector_palabras & vector)
 
 		for(int i = 0; i < palabras; i++)
 		{
-			getline(archivo, dato);
-			vector.aniade(dato);
+			if(getline(archivo, dato))
+			{
+				if (!dato.empty() && dato.back() == '\r') 
+                        		dato.pop_back();
+				vector.aniade(dato);
+			}
 		}
 	}
 	else

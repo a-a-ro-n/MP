@@ -25,6 +25,22 @@ vector_palabras::vector_palabras(const vector_palabras & _vector)
 		vector[i] = _vector.vector[i];
 }
 
+vector_palabras& vector_palabras::operator=(const vector_palabras & _vector)
+{
+    if(this != &_vector)
+    {
+        if(vector) delete[] vector;
+
+        reserva = _vector.reserva;
+        ocupado = _vector.ocupado;
+        vector = new string[reserva];
+
+        for(int i = 0; i < ocupado; i++)
+            vector[i] = _vector.vector[i];
+    }
+    return *this;
+}
+
 vector_palabras::~vector_palabras()
 {
 	if(vector)
@@ -37,11 +53,9 @@ void vector_palabras::aniade(const string & palabra)
 {
 	if(ocupado == reserva)
 		resize();
-	else
-	{
-		vector[ocupado] = palabra;
-		ocupado++;
-	}
+
+	vector[ocupado] = palabra;
+	ocupado++;
 }
 
 void vector_palabras::resize()

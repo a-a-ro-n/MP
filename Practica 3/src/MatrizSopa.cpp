@@ -36,30 +36,66 @@ matriz_sopa::matriz_sopa(const matriz_sopa & _matriz)
 
 matriz_sopa::matriz_sopa(const string & ruta)
 {
-	ifstream archivo(ruta);
+        ifstream archivo(ruta);
 
-	if(archivo.is_open())
+        matriz = nullptr;
+        fil = col = 0;
+
+        if(archivo.is_open())
+        {
+                string dato;
+
+                if(getline(archivo, dato))
+                        fil = stoi(dato);
+
+                if(getline(archivo, dato))
+                        col = stoi(dato);
+
+                matriz = new char *[fil];
+                for(int i = 0 ; i < fil; i++)
+                        matriz[i] = new char[col];
+
+                for(int i = 0; i < fil; i++)
+                        for(int j = 0; j < col; j++)
+                                archivo >> matriz[i][j];
+
+                archivo.close();
+        }
+        else
+                cerr << "Error: No se pudo abrir el archivo " << ruta << endl;
+}
+
+matriz_sopa & matriz_sopa::operator=(const matriz_sopa & _matriz)
+{
+	if(this != &_matriz)
 	{
-		string dato;
+		if(matriz)
+		{
+			for(int i = 0; i < fil; i++)
+				delete[] matriz[i];
 
-		getline(archivo,dato);
-		fil = stoi(dato);
+			delete[] matriz;
+		}
 
-		getline(archivo,dato);
-		col = stoi(dato);
+		fil = _matriz.fil;
+		col = _matriz.col;
 
-	        matriz = new char *[fil];
-        	for(int i = 0 ; i < fil; i++)
-                	matriz[i] = new char[col];
+		if(fil > 0 && col > 0)
+		{
+			matriz = new char *[fil];
+			for(int i = 0 ; i < fil; i++)
+				matriz[i] = new char[col];
 
-		for(int i = 0; i < fil; i++)
-			for(int j = 0; j < col; j++)
-				archivo >> matriz[i][j];
-
-		archivo.close();
+			for(int i = 0; i < fil; i++)
+			{
+				for(int j = 0; j < col; j++)
+					matriz[i][j] = _matriz.matriz[i][j];
+			}
+		}
+		else
+			matriz = nullptr;
 	}
-	else
-		cerr << "No se pudo abrir el archivo " << ruta << endl;
+	return *this;
 }
 
 matriz_sopa::~matriz_sopa()

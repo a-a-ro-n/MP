@@ -20,6 +20,8 @@ class matriz_sopa
 		int getFil() const;
 		int getCol() const;
 		char get(const int, const int) const;
+
+		matriz_sopa & operator=(const matriz_sopa &);
 };
 
 #endif // __MATRIZ_SOPA_H__

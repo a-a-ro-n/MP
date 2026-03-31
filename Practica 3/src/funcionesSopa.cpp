@@ -1,5 +1,6 @@
 #include "funcionesSopa.h"
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -13,17 +14,13 @@ void liberaMatriz(matriz_sopa & matriz)
 	matriz.~matriz_sopa();
 }
 
-void imprimeMatriz(const matriz_sopa & matriz)
-{
-	string resultado = "";
-	for(int i = 0; i < matriz.getFil(); i++)
-	{
-		for(int j = 0; j < matriz.getCol(); i++)
-			resultado += matriz.get(i,j) + " ";
-
-		resultado += "\n";
-	}
-	cout << resultado;
+void imprimeMatriz(const matriz_sopa & matriz) {
+    for(int i = 0; i < matriz.getFil(); i++) {
+        for(int j = 0; j < matriz.getCol(); j++) {
+            cout << matriz.get(i, j) << " ";
+        }
+        cout << endl;
+    }
 }
 
 void leerSopa(const string & ruta, matriz_sopa & matriz)

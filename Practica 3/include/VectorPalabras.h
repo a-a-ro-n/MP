@@ -21,6 +21,8 @@ class vector_palabras
 		void aniade(const string &);
 		int getOcupado() const;
 		string get(const int) const;
+
+		vector_palabras & operator=(const vector_palabras &);
 };
 
 #endif // __VECTOR_PALABRAS_H__
