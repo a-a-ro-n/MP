@@ -1,0 +1,43 @@
+#ifndef OPINIONES_H
+#define OPINIONES_H
+
+#include "ConjuntoUsuarios.h"
+
+class Opinion
+{
+private:
+	float ** opiniones;
+	int fil,col;
+	ConjuntoUsuarios users;
+	ConjuntoPeliculas pelis;
+
+public:
+	Opinion();
+	Opinion(const ConjuntoUsuarios & const ConjuntoPeliculas &);
+	Opinion(const string &, const string &, const string &);
+	Opinion(const Opinion &);
+	~Opinion();
+	void saveData(const string &,const string &, const string &);
+	void cargaOpiniones(const string &);
+	void introduceOpinion(const int,const int,const float);
+	void eliminaOpinion(const int, const int);
+	string to_string() const;
+	void setFil(const int);
+	void setCol(const int);
+
+	ConjuntoUsuario & getUsers() const;
+
+	ConjuntoPeliculas & getPelis() const;
+	ConjuntoPeliculas peliculasRecomendadas(const int, const int);
+
+	float similitud(const int,const int);
+	ConjuntoUsuarios usuariosSimilares(const int, const int);
+
+	float consensoPelicula(const int);
+	float medidaPelicula(const int);
+
+	friend std::ostream & operator<<(std::ostream &, const Opinion &);
+
+};
+
+#endif // OPINIONES_H
