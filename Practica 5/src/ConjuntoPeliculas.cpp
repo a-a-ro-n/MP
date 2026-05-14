@@ -33,8 +33,51 @@ ConjuntoPeliculas::ConjuntoPeliculas(const ConjuntoPeliculas& orig)
 
 ConjuntoPeliculas::~ConjuntoPeliculas()
 {
-	delete[] conj;
+    if(conj)
+        delete[] conj;
+    conj = nullptr;
+
+    numpeliculas = 0;
+}
+
+ConjuntoPeliculas::ConjuntoPeliculas(const std::string & fich)
+{
+	reservado = INCREMENTO;
+	conj = new Pelicula[reservado];
 	numpeliculas = 0;
+
+	string omitir,dato;
+
+	ifstream archivo(fich);
+	if(archivo.is_open())
+	{
+		getline(archivo, omitir);
+
+		while(getline(archivo, dato, ';'))
+		{
+			if(dato != "" && dato != "\n" && dato != "\r") {
+				int id = stoi(dato);
+
+				getline(archivo, dato, ';');
+				string nombre = dato;
+
+				getline(archivo, dato, ';');
+				int anio = stoi(dato);
+
+				getline(archivo, dato);
+
+				for(size_t j = 0; j < dato.length(); j++)
+					if(dato[j] == ',') dato[j] = '.';
+
+				float valoracion = stof(dato);
+
+				aniadePelicula(id, nombre, anio, valoracion, "");
+			}
+		}
+		archivo.close();
+	}
+	else
+		cout << "No se pudo abrir el archivo." << endl;
 }
 
 void ConjuntoPeliculas::leerFichero(string rutaFichero, int numdatos) {
@@ -43,11 +86,9 @@ void ConjuntoPeliculas::leerFichero(string rutaFichero, int numdatos) {
 
     	if(archivo.is_open())
 	{
-        	// 1. Saltamos la cabecera completa
         	getline(archivo, omitir);
 
-        	// 2. Limpiamos y preparamos el conjunto
-        	if(conj != nullptr)
+        	if(conj)
         		delete[] conj;
 
         	reservado = numdatos;
@@ -126,18 +167,19 @@ void ConjuntoPeliculas::ordenaporranking()
 	int j;
 	Pelicula aux;
 
-	for (int i = 1; i < numpeliculas; i++) {
-        	aux = conj[i];
-        	j = i - 1;
+    for (int i = 1; i < numpeliculas; i++)
+    {
+        aux = conj[i];
+        j = i - 1;
 
-        	while (j >= 0 && conj[j].getValoracion() > aux.getValoracion())
+        while (j >= 0 && conj[j].getValoracion() < aux.getValoracion())
 		{
-        		conj[j + 1] = conj[j];
-        	    	j = j - 1;
-        	}
+            conj[j + 1] = conj[j];
+            j = j - 1;
+        }
 
-        	conj[j + 1] = aux;
-    	}
+        conj[j + 1] = aux;
+    }
 }
 
 string ConjuntoPeliculas::to_string() const
@@ -164,7 +206,8 @@ void ConjuntoPeliculas::escribeFichero(string rutaFichero) const
 
 			archivo << nota_str << endl;
         	}
-       	archivo.close();
+
+	       	archivo.close();
     	}
 }
 
@@ -187,12 +230,12 @@ void ConjuntoPeliculas::resize()
 	{
 		if(reservado == 0)
 		{
-			reservado = INCREMENTO; // establecemos un reservado
+			reservado = INCREMENTO;
 
-			if(conj) // si el conjunto no esta vacio por algun motivo extraño lo borramos
+			if(conj)
 				delete[] conj;
 
-			conj = new Pelicula[reservado]; // asignamos al conjunto un espacio de reservado
+			conj = new Pelicula[reservado];
 		}
 
 		else
@@ -230,7 +273,7 @@ ConjuntoPeliculas & ConjuntoPeliculas::operator=(const ConjuntoPeliculas & orig)
 	if(this != &orig)
 	{
 		if(conj)
-			delete[] orig;
+			delete[] conj;
 
 		reservado = orig.reservado;
         	conj = new Pelicula[reservado];
@@ -246,14 +289,17 @@ ConjuntoPeliculas & ConjuntoPeliculas::operator=(const ConjuntoPeliculas & orig)
 
 ConjuntoPeliculas & ConjuntoPeliculas::operator+=(const Pelicula & p)
 {
-	aniadepelicula(p.getId(),p.getNombre(),p.getAnio(),p.getValoracion(),p.getGenero());
+	aniadePelicula(p.getId(),p.getNombre(),p.getAnio(),p.getValoracion(),p.getGenero());
 	return *this;
 }
 
 Pelicula & ConjuntoPeliculas::operator[](const int index) const
 {
-	if(buscar(index) != -1)
-		return conj[index];
+    if(index >= 0  && index < numpeliculas)
+        return conj[index];
+
+    static Pelicula no;
+    return no;
 }
 
 int ConjuntoPeliculas::busquedaPelicula(const string & nombre) const
@@ -261,7 +307,7 @@ int ConjuntoPeliculas::busquedaPelicula(const string & nombre) const
         int pos = -1;
         for(int i = 0; i < numpeliculas && pos == -1; i++)
         {
-		size_t found = nombre.find(conj[i].getNombre());
+        size_t found = conj[i].getNombre().find(nombre);
                 if(found != std::string::npos)
                         pos = conj[i].getId();
         }
@@ -269,7 +315,10 @@ int ConjuntoPeliculas::busquedaPelicula(const string & nombre) const
         return pos;
 }
 
-
+int ConjuntoPeliculas::getNumPeliculas() const
+{
+	return numpeliculas;
+}
 
 
 

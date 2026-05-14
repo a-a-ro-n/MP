@@ -60,9 +60,32 @@ ConjuntoUsuarios::ConjuntoUsuarios(const ConjuntoUsuarios& orig) {
         numusuarios = orig.numusuarios;
 }
 
+ConjuntoUsuarios::ConjuntoUsuarios(const std::string & fich)
+{
+    tamreservado = INCREMENTO;
+    numusuarios = 0;
+    vectorUsuarios = new Usuario[tamreservado];
+
+	ifstream arch(fich);
+	if(arch.is_open())
+	{
+		string datos = "";
+		getline(arch,datos);
+        int cantidad = stoi(datos);
+
+        for(int i = 0; i < cantidad; i++)
+        {
+            Usuario user;
+            arch >> user;
+            *this += user;
+        }
+	}
+}
+
 ConjuntoUsuarios::~ConjuntoUsuarios() {
 	if(vectorUsuarios)
 		delete[] vectorUsuarios;
+    vectorUsuarios = nullptr;
 
 	tamreservado = numusuarios = 0;
 	vectorUsuarios = nullptr;
@@ -167,8 +190,12 @@ void ConjuntoUsuarios::optimizar(){
 }
 
 Usuario & ConjuntoUsuarios::operator[](int i) const{
-	if(i >= 0 && i < numusuarios)
-		return vectorUsuarios[i];
+    if(i >= 0 && i < numusuarios) {
+        return vectorUsuarios[i];
+    }
+
+    static Usuario no;
+    return no;
 }
 
 void ConjuntoUsuarios::ordenaporId(){
@@ -230,10 +257,11 @@ ConjuntoUsuarios operator+( const ConjuntoUsuarios & left, const ConjuntoUsuario
 	return result;
 }
 
-istream ConjuntoUsuarios::operator>>(std::istream & flujo, ConjuntoUsuarios &conj)
+std::istream & operator>>(std::istream & flujo, ConjuntoUsuarios &conj)
 {
 	if(conj.vectorUsuarios)
-		delete[] conj.vectorUsuarios;
+        delete[] conj.vectorUsuarios;
+    conj.vectorUsuarios = nullptr;
 	conj.numusuarios = conj.tamreservado = 0;
 
 	int iteraciones;
@@ -243,7 +271,6 @@ istream ConjuntoUsuarios::operator>>(std::istream & flujo, ConjuntoUsuarios &con
 	{
 		Usuario user;
 		flujo >> user;
-
 		conj+=user;
 	}
 
@@ -256,16 +283,16 @@ void ConjuntoUsuarios::ordenamientoID()
         Usuario aux;
 
         for (int i = 1; i < numusuarios; i++) {
-                aux = conj[i];
+                aux = vectorUsuarios[i];
                 j = i - 1;
 
-                while (j >= 0 && conj[j].getId() < aux.getId())
+                while (j >= 0 && vectorUsuarios[j].getId() < aux.getId())
                 {
-                        conj[j + 1] = conj[j];
+                        vectorUsuarios[j + 1] = vectorUsuarios[j];
                         j = j - 1;
                 }
 
-                conj[j + 1] = aux;
+                vectorUsuarios[j + 1] = aux;
         }
 
 }

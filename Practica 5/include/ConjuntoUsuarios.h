@@ -58,6 +58,8 @@ public:
      * @param correoselectronicos Vector con los correos electrónicos de los usuarios. 
      */
     ConjuntoUsuarios(int n, string * nombresusuario, string * correoselectronicos);
+
+	ConjuntoUsuarios(const std::string &);
     /**
      * @brief Devuelve un string que imprime la lista de usuarios ordenados por el número
      * de películas que han visto.   
@@ -139,7 +141,7 @@ public:
     friend ConjuntoUsuarios operator+( const ConjuntoUsuarios & left, const ConjuntoUsuarios & right);
 	int getNumUsuarios() const;
 
-	friend std::istream operator>>(std::istream & flujo, ConjuntoUsuarios &);
+	friend std::istream & operator>>(std::istream & flujo, ConjuntoUsuarios &);
 	void ordenamientoID();
 	void clear();
 

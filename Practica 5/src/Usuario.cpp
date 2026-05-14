@@ -52,15 +52,16 @@ Usuario::Usuario(const Usuario& orig) {
 
 	idAmigos = new int[numreservadoAmigos];
 
-	for(int i = 0; i < numreservadoAmigos; i++)
+    for(int i = 0; i < numAmigos; i++)
 		idAmigos[i] = orig.idAmigos[i];
 }
 
 Usuario::~Usuario() {
 	if(idAmigos)
 		delete[] idAmigos;
+    idAmigos = nullptr;
 
-        correoelectronico = nombreusuario = "";
+    correoelectronico = nombreusuario = "";
 	numpeliculas = numAmigos = numreservadoAmigos = 0;
 }
 
@@ -115,7 +116,7 @@ Usuario & Usuario::operator=(const Usuario & orig){
 
         	idAmigos = new int[numreservadoAmigos];
 
-        	for(int i = 0; i < numreservadoAmigos; i++)
+            for(int i = 0; i < numAmigos; i++)
                 	idAmigos[i] = orig.idAmigos[i];
 
 	}
@@ -201,12 +202,12 @@ void Usuario::decrementaNumPeliculas()
 }
 
 int & Usuario::operator[](int i) const{
-	int num = -1;
+    static int num = -1;
 
-     	if(i >= 0 && i < numAmigos)
-		return idAmigos[i];
-	else
-		return num;
+    if(i >= 0 && i < numAmigos)
+        return idAmigos[i];
+    else
+        return num;
 }
 
 bool operator==( const Usuario & izq, const Usuario & dch){
@@ -257,10 +258,13 @@ int Usuario::getNumAmigos() const
 std::istream & operator>>( std::istream & flujo, Usuario & user)
 {
 	char basura;
+    int amigos = 0;
 	flujo >> user.id >> user.nombreusuario >> user.correoelectronico >> user.numpeliculas
-		>> user.numAmigos >> basura;
+        >> amigos >> basura;
 
-	for(int i = 0; i < user.numAmigos; i++)
+    user.numAmigos = 0;
+
+    for(int i = 0; i < amigos; i++)
 	{
 		int id_amigo;
 		flujo >> id_amigo;

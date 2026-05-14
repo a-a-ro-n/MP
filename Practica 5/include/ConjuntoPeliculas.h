@@ -43,6 +43,7 @@ public:
     	 */
     	ConjuntoPeliculas(const ConjuntoPeliculas& orig);
 
+	ConjuntoPeliculas(const std::string &);
     	/**
     	 * @brief Este método lee numdatos películas y las almacena en el vector de películas. Si el vector contuviera
     	 * alguna película previamente, entonces lo vaciamos. En posteriores versiones no estáticas de este método quitaremos la 
@@ -130,6 +131,8 @@ public:
 	ConjuntoPeliculas & operator+=(const Pelicula &);
 	Pelicula & operator[](const int) const;
 	int busquedaPelicula(const string &) const;
+	int getNumPeliculas() const;
+
 private:
 	const static int INCREMENTO = 10;
     	int reservado = INCREMENTO;
